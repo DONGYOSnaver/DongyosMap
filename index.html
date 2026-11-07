@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DỘNGYỘS World Map</title>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <!-- 메인 스타일시트 -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 로그인 전용 스타일시트 -->
+  <link rel="stylesheet" href="login/login.css">
+</head>
+<body>
 
+  <!-- 지도 영역 -->
+  <div id="map"></div>
+
+  <!-- 플로팅 아일랜드 상단 바 -->
+  <nav class="nav-island">
+    <div class="nav-left">
+      <!-- 메뉴 버튼 (삼선) -->
+      <button
+        type="button"
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="메뉴 열기"
+        aria-expanded="false"
+        aria-controls="menuPanel"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="#" class="logo">DỘNGYỘS♛</a>
+
+      <!-- 드롭다운 메뉴 패널 -->
+      <div class="menu-panel" id="menuPanel">
+        <ul>
+          <li class="menu-user" id="menuUser"></li>
+          <li><a href="#" onclick="resetMap(); closeMenu();">🏠 홈 위치로 이동</a></li>
+          <li><a href="#" onclick="changeMap('street'); closeMenu();">🗺️ 일반 지도 보기</a></li>
+          <li><a href="#" onclick="changeMap('satellite'); closeMenu();">🛰️ 위성 지도 보기</a></li>
+          <li>
+            <!-- 로그인/로그아웃 버튼 -->
+            <a href="#" id="authLink" class="js-open-login">로그인</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 중앙 검색창 -->
+    <div class="nav-search">
+      <input id="search" placeholder="도시 또는 장소 검색..."/>
+    </div>
+
+    <!-- 오른쪽 지도 모드 전환 토글 -->
+    <div class="nav-mode">
+      <button id="streetBtn" onclick="changeMap('street')">일반</button>
+      <button id="satBtn" class="active" onclick="changeMap('satellite')">위성</button>
+    </div>
+  </nav>
+
+  <!-- 오른쪽 하단 줌/홈 컨트롤 -->
+  <div class="controls">
+    <button onclick="zoomIn()">+</button>
+    <button onclick="zoomOut()">−</button>
+    <button onclick="resetMap()">⌂</button>
+  </div>
+
+  <!-- 왼쪽 하단 줌 수치 -->
+  <div class="zoom-info">
+    ZOOM : <span id="zoomLevel">13</span>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- 메인 스크립트 -->
+  <script src="script.js"></script>
+  <!-- 로그인 전용 스크립트 (login.html 동적 로드 포함) -->
+  <script src="login/login.js"></script>
+</body>
+</html>
